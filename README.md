@@ -10,7 +10,9 @@ https://drive.google.com/file/d/183xqT3rjHebKXZOz2wFJUc5kjyMIX2O6/view?usp=share
 
 Put this checkpoint at the main directory
 
-## Put the image at the main directory
+## Command to run infer.py with the path to the testing image
 python3 infer.py --image_path image.jpeg
+
+Put the image at the main directory
 
 ### The result will be store in the prediction folder with the name result.jpeg
