@@ -48,21 +48,29 @@ model.load_state_dict(checkpoint['model'])
 device = torch.device('cuda' if torch.cuda.is_available() else "cpu")
 model.to(device)
 
-import sys
+# import sys
 
-def parse_kwargs(argv):
-    kwargs = {}
-    for arg in argv:
-        if "=" in arg:
-            key, value = arg.split("=")
-            kwargs[key.lstrip("--")] = value
-    return kwargs
+# def parse_kwargs(argv):
+#     kwargs = {}
+#     for arg in argv:
+#         if "=" in arg:
+#             key, value = arg.split("=")
+#             kwargs[key.lstrip("--")] = value
+#     return kwargs
 
-argv = sys.argv[1:]
-kwargs = parse_kwargs(argv)
-img_path = kwargs.get("image_path")
+# argv = sys.argv[1:]
+# kwargs = parse_kwargs(argv)
+# img_path = kwargs.get("image_path")
 
-print(img_path)
+import argparse
+
+parser = argparse.ArgumentParser(description="Inference script")
+parser.add_argument("--image_path", type=str, required=True, help="Path to the input image")
+args = parser.parse_args()
+img_path = args.image_path
+
+print(f"Image path provided: {img_path}")
+
 ori_img = cv2.imread(img_path)
 ori_img = cv2.cvtColor(ori_img, cv2.COLOR_BGR2RGB)
 ori_w = ori_img.shape[0]
